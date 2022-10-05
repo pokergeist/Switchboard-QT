@@ -6,9 +6,9 @@ The Switchboard QT project allows a user to control (5) DPDT latching relays wit
 
 The Switchboard QT board also hosts a TI INA219 power monitor (voltage, current, power).
 
-There are two Qwiic/STEMMA QT connector plus one on the QT Py micro.
+There are two Qwiic/STEMMA QT connectors plus one on the QT Py micro.
 
-There is a jumper header that accepts 5V power and provides access to unused GPIO lines.
+A jumper header that accepts 5V power and provides access to unused GPIO lines.
 
 ## Lineage
 

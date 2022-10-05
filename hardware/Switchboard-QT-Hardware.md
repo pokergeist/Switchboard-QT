@@ -26,7 +26,7 @@
     * under consideration:
       * /RESET
       * /INT
-      * QT Py A0-A2, SPIx3, TX.RX
+      * QT Py A0-A2, SPIx3, TX, RX
   * Cut/solder jumpers for:
     * I2C addresses (A0, A1). Grounded, cut to pull high.
     * I2C Vcc connection to QT Py MCU. Cut to isolate QT Py voltage regulator from Qwiic Vcc.
