@@ -20,17 +20,14 @@
   * Reset Switch
 * Interconnects
   * Qwiic/Stemma-QT connectors
-  * Terminal Blocks for Relays & Power Sensor
-  * Header for select pin access
-    * 5V & GND
-    * GPA5-GPA7, GPB5-GPB-7
-    * under consideration:
-      * /RESET
-      * /INT
-      * QT Py A0-A2, SPIx3, TX, RX
-  * Cut/solder jumpers for:
-    * I2C addresses (A0, A1). Grounded, cut to pull high.
-    * I2C Vcc connection to QT Py MCU. Cut to isolate QT Py voltage regulator from Qwiic Vcc.
+  * Solder holes / screw terminal blocks for Relays & Power Sensor
+  * Header for select pin access:
+    * 5V & GND (powers QT Py)
+    * GPA5-GPA7, GPB5-GPB-7, /INT
+    * QT Py A0-A3
+    * Cut/solder jumpers for:
+      * I2C addresses (A0, A1). Grounded, cut to pull high.
+      * I2C Vcc connection to QT Py MCU. Cut to isolate QT Py voltage regulator from Qwiic Vcc.
 
 ---
 

@@ -28,6 +28,4 @@ Software will be uploaded once developed and tested with the fabricated boards.
 
 ## Options Under Consideration
 
-* Add GPIOX /INT to JP1.
-* Add QTPy A0-A2 to JP1.
 * Expand the address range of the GPIOX and Power Monitor ICs. Allow SDA and SCL to be connected to A0 & A1 (increasing board addresses from 4 to 16).
