@@ -13,6 +13,7 @@
   * [Relay Driver](#relay-driver) ICs
   * DPDT latching [relays](#relays)
 * [Power Monitor](#power-monitor)
+* [User Options](#user-optioins)
 * Discrete Components
   * [Resistors](#resistors)
   * [Capacitors](#capacitors)
@@ -45,25 +46,27 @@ QT Py Notes:
 
 * 5V power can be provided via USB-C cable or header JP1.
   * The 5V input is only used to power the QT Py's 3.3V voltage regulator.
-* The QT Py provides a third Qwiic connector.
+* The QT Py provides a third Qwiic connector and an option for flash memory.
 * All components and the Qwiic Vcc line are power by the QT Py's voltage regulator (up to ~500mA) by default.
-* The /RESET line is not exposed off-board. A SAMD21 (#4600) QT Py's SWD and /RESET pads are accessible via through-hole solder pads. Therefore the RESET button will reset the GPIO Expander IC and perhaps the MCU. The state of the Relays will not be changed, and cannot be examined. The MCU may choose to reset the relays to a known state or preserve the current state.
+* The /RESET line is not exposed off-board. A SAMD21 (#4600) QT Py's SWD and /RESET pads are accessible via through-hole solder pads. The RESET button/signal will reset the MCU at most. The state of the Relays will not be changed, and cannot be examined. The MCU may choose to reset the relays to a known state or preserve the current state.
 
 ### Switches
 
 | Location |            Type             | Uses                                                         |
 | :------: | :-------------------------: | ------------------------------------------------------------ |
-|  RESET   | Momentary pushbutton switch | Resets the GPIO Expander, and the MCU if the RST pad is connected. **Note: the relays latch so they do not reset by default. There is no way to determine their state unless it is saved to EEPROM or NVRAM.** |
+|  RESET   | Momentary pushbutton switch | Resets the MCU if the RST pad is connected. **Note: the relays latch so they do not reset by default. There is no way to determine their state unless it is saved to EEPROM or NVRAM.** Flash memory can be added to the QT Py board. |
 
 ### I2C Notes
 
 * I2C pullup resistors (1kΩ) are provided but can be changed or removed depending on other connected I2C modules.
 * If I2C Vcc power is provided off-board and there is a QT Py MCU in place, the Vcc cut jumper **should be cut** to decouple that voltage from the QT Py's 3.3V voltage regulator output.
-* Address values for the I2C connected ICs can altered using the A0 & A1 cut jumpers such that (4) Switchboard QT boards could be connected via Qwiic cabling.
+* Address values for the I2C connected ICs can altered using the A0 & A1 cut/solder jumpers such that (4) Switchboard QT boards could be connected via Qwiic cabling.
 
 ## GPIO Expander
 
-**TI [PCA9539DW](https://www.digikey.com/short/zd08w70j)**
+~~TI PCA9539DW~~
+
+**ON Semi [PCA9655E](https://www.digikey.com/short/jrp85vnw)**
 
 The 16-channel GPIO Expander adds (10) GPIO lines to control the Set and Reset coils of the 5 double-pole relays.
 
@@ -74,13 +77,18 @@ The 16-channel GPIO Expander adds (10) GPIO lines to control the Set and Reset c
 
 **GPIOX Notes**:
 
-* The PCA9539 does not provide pull-up or pull-down resistors for lines designated as inputs.
-* The GPIO lines to the Relay Drivers are only held high long (~15ms) to latch the relay in the desired state, then dropped. Therefore the state of the relays cannot be assessed after resetart.
-* The relay coils draw about 51mA so energizing all 5 relays at once will draw ~257mA of the 500mA available from the QT Py. (The driver should prevent concurrent use of the SET and RESET coils for any one relay.)
-* MCP20017 comparison:
+* The PCA9639 has 100kΩ pull-up resistors for lines designated as inputs. (Not low enough to trigger relay drivers on reset default to INPUT mode.)
+* The GPIO output lines to the Relay Drivers are only held high long (~15ms) to latch the relay in the desired state, then dropped. Therefore the state of the relays cannot be assessed after resetart.
+* The relay coils draw about 51mA so energizing all 5 relays at once will draw ~257mA of the 500mA available from the QT Py. (As I recall, the driver prevents concurrent use of the SET and RESET coils for any one relay.)
+* TI PCA9639 comparison
+  * didn't have pull-up or -down resistors for input which complicates simple button or switch interfaces
+  * has /RESET which was of dubious value
+  * doesn't have AD2 which is of no particular value
+
+* Microchip MCP20017 comparison:
   * larger package, 28-pin vs. 24
   * GPx7 pins are output only
-  * has /INTA & B pins
+  * has /INT-A & -B pins
   * only available in DIP package for now
 
 ## Relay Driver
@@ -100,6 +108,12 @@ There are (5) double-pole, double-throw (DPDT) latching relays. The Set or Reset
 **[INA219BIDR](https://www.digikey.com/short/9qj5h54z)**
 
 This is a slight upgrade from the INA219A. It monitors voltage, current, and power through the V+ and V- contacts. Here's the [writeup](https://www.adafruit.com/product/904) on Adafruit's module.
+
+## User Options
+
+The addition of the **flash memory** option to the QT Py MCU will allow saving of relay state information. That information could be retrieved on reset to recover state information.
+
+A **display with buttons** and a Qwiic/STEMMA QT interface could be added to enhance the user interface and control options. Please be mindful of the current load placed on the QT Py's voltage regulator (500mA total).
 
 ## Resistors
 

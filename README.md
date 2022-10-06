@@ -16,7 +16,7 @@ The Switchboard QT project is a remix of the [ATMakers Switchboard](https://gith
 
 ## Status
 
-Component selection is still underway for the GPIO Expander. Drivers for the new GPIOX will have to be integrated or written and tested. Other components are at risk of supply chain issues.
+A drivers for the new GPIOX will have to be written and tested. Other components are at risk of supply chain issues.
 
 ## Hardware
 
@@ -24,5 +24,11 @@ On-board hardware is detailed [here](./hardware/Switchboard-QT-Hardware.md).
 
 ## Software
 
-Software will be loaded once developed and tested with the fabricated boards.
+Software will be uploaded once developed and tested with the fabricated boards.
 
+## Options Under Consideration
+
+* Add GPIOX /INT to JP1.
+* Add QTPy A0-A2 to JP1.
+* Route AD0 & AD1 to QTPy A0 & A1 for address sensing, or just let the micro poll using I2C address pings.
+* Expand the address range of the GPIOX and Power Monitor ICs by allowing SDA and SCL to be tied to A0 & A1 (increasing board addresses from 4 to 16).
