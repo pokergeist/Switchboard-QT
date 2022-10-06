@@ -30,5 +30,4 @@ Software will be uploaded once developed and tested with the fabricated boards.
 
 * Add GPIOX /INT to JP1.
 * Add QTPy A0-A2 to JP1.
-* Route AD0 & AD1 to QTPy A0 & A1 for address sensing, or just let the micro poll using I2C address pings.
-* Expand the address range of the GPIOX and Power Monitor ICs by allowing SDA and SCL to be tied to A0 & A1 (increasing board addresses from 4 to 16).
+* Expand the address range of the GPIOX and Power Monitor ICs. Allow SDA and SCL to be connected to A0 & A1 (increasing board addresses from 4 to 16).
