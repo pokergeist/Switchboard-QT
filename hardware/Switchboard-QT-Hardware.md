@@ -77,7 +77,8 @@ The 16-channel GPIO Expander adds (10) GPIO lines to control the Set and Reset c
 
 **GPIOX Notes**:
 
-* The PCA9639 has 100kΩ pull-up resistors for lines designated as inputs. (Not low enough to trigger relay drivers on reset default to INPUT mode.)
+* The PCA9655 has 100kΩ pull-up resistors for lines designated as inputs. (Not low enough to trigger relay drivers on reset default to INPUT mode.)
+* The ON PCA9655 appears (for the moment) to be very similar to the TI or NXP PCA9535. Maybe that driver can be used (or quickly ported).
 * The GPIO output lines to the Relay Drivers are only held high long (~15ms) to latch the relay in the desired state, then dropped. Therefore the state of the relays cannot be assessed after resetart.
 * The relay coils draw about 51mA so energizing all 5 relays at once will draw ~257mA of the 500mA available from the QT Py. (As I recall, the driver prevents concurrent use of the SET and RESET coils for any one relay.)
 * TI PCA9639 comparison
