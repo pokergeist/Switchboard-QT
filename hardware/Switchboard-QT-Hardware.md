@@ -101,7 +101,7 @@ The 7-channel relay drivers provide low-side switching of up to 500mA per channe
 
 There are (5) double-pole, double-throw (DPDT) latching relays. The Set or Reset control activates both relays in the device to switch the connection between the common (CO) contact and the normally open NO or normally closed (NC) contacts respectively.
 
-### Alternative Solid State Relay
+### Solid State Relay Alternative 
 
 I looked at a solid-state relay like the 2A Toshiba [TLP241](https://www.digikey.com/short/f30dpjm9).
 
