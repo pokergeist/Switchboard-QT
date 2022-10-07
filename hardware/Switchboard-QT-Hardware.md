@@ -23,11 +23,11 @@
   * Solder holes / screw terminal blocks for Relays & Power Sensor
   * Header for select pin access:
     * 5V & GND (powers QT Py)
-    * GPA5-GPA7, GPB5-GPB-7, /INT
+    * GPA5-GPA7, GPB5-GPB7, /INT
     * QT Py A0-A3
     * Cut/solder jumpers for:
-      * I2C addresses (A0, A1). Grounded, cut to pull high.
-      * I2C Vcc connection to QT Py MCU. Cut to isolate QT Py voltage regulator from Qwiic Vcc.
+      * I2C addresses (AD0, AD1). Grounded, cut to pull high.
+      * I2C Vcc connection to QT Py 3V. Cut to isolate QT Py voltage regulator output from Qwiic Vcc.
 
 ---
 
@@ -100,6 +100,24 @@ The 7-channel relay drivers provide low-side switching of up to 500mA per channe
 **[EE2-3TNUH(-L)](https://www.digikey.com/short/3hfz4vbc)**
 
 There are (5) double-pole, double-throw (DPDT) latching relays. The Set or Reset control activates both relays in the device to switch the connection between the common (CO) contact and the normally open NO or normally closed (NC) contacts respectively.
+
+### Alternative Solid State Relay
+
+I looked at a solid-state relay like the 2A Toshiba [TLP241](https://www.digikey.com/short/f30dpjm9).
+
+**Advantages**:
+
+* low cost - $1.23@q10
+* a smaller footprint (but x 2 if the tandem EE2 relays can be utilized)
+* no need for a flyback diode or driver IC since there's no coil
+* can be driven from the selected GPIO Expander.
+
+**Disadvantages**:
+
+* probably needs a little more care in selecting a relay to match potential loads
+* this example is a "1 Form A" (SPST) relay, non-latching
+* 7.5mA LED current per "energized" relay is sustained and additive vs. a 60mA, 15ms pulse to change the state of the latching relay.
+* requires a current limiting resistor for the LED input.
 
 ## Power Monitor
 
