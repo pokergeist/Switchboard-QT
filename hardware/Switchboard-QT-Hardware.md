@@ -115,6 +115,7 @@ I looked at a solid-state relay like the 2A Toshiba [TLP241](https://www.digikey
 **Disadvantages**:
 
 * probably needs a little more care in selecting a relay to match potential loads
+* the 2A rating is very temperature constrained
 * this example is a "1 Form A" (SPST) relay, non-latching
 * 7.5mA LED current per "energized" relay is sustained and additive vs. a 60mA, 15ms pulse to change the state of the latching relay.
 * requires a current limiting resistor for the LED input.
