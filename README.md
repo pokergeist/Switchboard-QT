@@ -16,7 +16,11 @@ The Switchboard QT project is a remix of the [ATMakers Switchboard](https://gith
 
 ## Status
 
-A drivers for the new GPIOX will have to be written and tested. Other components are at risk of supply chain issues.
+A tested driver for the new GPIOX has been [located](https://github.com/sumotoy/gpio_expander) though I think a few tweaks are needed.  Hardware components are at risk of supply chain issues.
+
+Production is awaiting feedback expressing interest in the product as-is.
+
+Other variants may use different number or type of relay, perhaps solid state versions, and utilize SDA & SCL for an extended addressing scheme.
 
 ## Hardware
 
